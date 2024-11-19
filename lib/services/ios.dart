@@ -27,6 +27,8 @@ class IOSFilesModifier {
   Future<bool> updateAppDelegateSwift(
       {required String codeToAdd,
       required String referenceCode,
+      String beforeDelegator = "\n\t",
+      String afterDelegator = "\n\t",
       InsertionType insertionType = InsertionType.after}) async {
     try {
       if (swiftFile == null || !await swiftFile!.exists()) {
@@ -48,11 +50,12 @@ class IOSFilesModifier {
 
       //Add new code
       codeToAdd =
-          '${insertionType == InsertionType.after ? '\n' : ''}$codeToAdd${insertionType == InsertionType.before ? '\n' : '\t'}';
+          '${insertionType == InsertionType.after ? afterDelegator : ''}$codeToAdd${insertionType == InsertionType.before ? beforeDelegator : ''}';
       String updatedContent =
           '${content.substring(0, insertIndex)}$codeToAdd${content.substring(insertIndex)}';
 
       await swiftFile!.writeAsString(updatedContent);
+      log("Swift file updated");
       return true;
     } catch (e) {
       debugPrint('Error updating AppDelegate.swift: $e');

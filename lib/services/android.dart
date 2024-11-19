@@ -64,6 +64,7 @@ class ManifestModifier {
 
       if (isInsertHappen) {
         await updateManifest(document.toXmlString(pretty: true));
+        log("Android Manifest updated");
       }
     } catch (e) {
       log("Error modifyAndroidManifest: $e");

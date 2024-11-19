@@ -5,7 +5,7 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = pkg_installer
+PRODUCT_NAME = Dependency Installer
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.onports.pkgInstaller
